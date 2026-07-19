@@ -17,12 +17,6 @@ A CodeBuddy Code plugin bundle: 5 skills + 5 slash commands + 1 git-commit guard
 | AI-Infra Helper | `/raihan-toolkit:ai-infra-helper` | Navigate SGLang/vLLM-style repos; reminds fork-PR CI behavior; drafts PRs. |
 | Social Media | `/raihan-toolkit:social <idea>` | One idea → 6 platform drafts (FB/IG/YouTube/X/LinkedIn/Gmail) + content calendar. Drafting only — no auto-posting. |
 
-## Hard Rules (enforced)
-
-1. **No AI-generation footers.** Never emit `Generated with CodeBuddy Code`, `Co-Authored-By: Claude`, or any AI trailer in commits, PRs, cover letters, or social posts.
-   - Enforced in each `SKILL.md` AND in `hooks/validate-commit.sh` (denies `git commit` calls whose message contains AI-footer patterns).
-2. **Social media is drafting-only.** No actual posting. Auto-posting would require per-platform OAuth (Facebook Graph API, Instagram Graph API, YouTube Data API, Gmail API) — out of scope for v1.
-
 ## Install
 
 ### Option A — Dev/test (quick)
@@ -61,8 +55,8 @@ raihan-toolkit/
 ├── .codebuddy-plugin/plugin.json
 ├── commands/          # 5 slash commands
 ├── skills/            # 5 SKILL.md (auto-activating)
-├── hooks/             # PreToolUse Bash guard (no AI footers)
-├── references/        # quality-bar, platform-specs, ai-infra-repos, no-ai-footer-rule
+├── hooks/             # PreToolUse Bash guard for commits
+├── references/        # quality-bar, platform-specs, ai-infra-repos
 ├── templates/         # cover-letter, pr-description, readme-scaffold, logs, calendar
 └── scripts/           # git-diff-staged, audit-repo, init-calendar, sync-to-cache
 ```

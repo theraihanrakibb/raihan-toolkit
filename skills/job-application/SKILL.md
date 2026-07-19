@@ -23,7 +23,6 @@ description: Accelerates job applications when the user pastes a job description
 3. **Log the application** — append a row to `templates/job-applications-log.md` with date, company, role, JD source, and status `drafted`.
 
 ## Rules
-- **No AI-generation footers** anywhere — not in the cover letter, not in resume bullets, not in the log. See `references/no-ai-footer-rule.md`.
 - Never invent experience, employers, or metrics. Only rephrase what the user actually has.
 - If the JD asks for something the user clearly can't do, say so in the skills-gap section rather than faking it.
 - Don't auto-submit applications anywhere. Output is drafts only.
@@ -31,4 +30,3 @@ description: Accelerates job applications when the user pastes a job description
 ## References
 - `templates/cover-letter.md`
 - `templates/job-applications-log.md`
-- `references/no-ai-footer-rule.md`

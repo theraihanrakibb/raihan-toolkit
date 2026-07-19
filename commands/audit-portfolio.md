@@ -23,4 +23,4 @@ Activate the **portfolio-audit** skill and run a full audit.
 6. Ask the user: "Auto-fix easy items? (add LICENSE, scaffold README, add .gitignore)". If yes, apply using `templates/readme-scaffold.md` — but only after explicit per-file confirmation.
 7. Save the audit snapshot to `references/portfolio-snapshot.md`.
 
-**Hard rule:** No AI-generation footers on any generated file.
+**Rules:** Confirm before writing any files (LICENSE, README, .gitignore) to the user's repos.

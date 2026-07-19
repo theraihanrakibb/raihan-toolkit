@@ -20,7 +20,6 @@ Activate the **social-media** skill.
 6. Append a row to the calendar: date | idea | platforms | tone.
 7. Present each platform's draft in its own fenced block so the user can copy individually.
 
-**Hard rules:**
+**Rules:**
 - **Drafting only.** No auto-posting, no OAuth, no API calls.
-- **No AI-generation footers** in any draft.
 - Don't fabricate stats, quotes, or testimonials.

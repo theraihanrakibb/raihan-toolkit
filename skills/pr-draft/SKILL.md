@@ -19,14 +19,11 @@ description: Generates a clean Conventional Commit message, PR description, and 
    3. **Changelog entry** — one-line `Keep a Changelog` style entry under the right section (Added / Changed / Fixed / Removed).
 3. **Present the message** to the user. If they approve, you may run `git commit -m "<message>"` for them — but only after explicit confirmation.
 
-## Rules (HARD — never violate)
-- **No AI-generation footers.** Never append `Generated with CodeBuddy Code`, `Co-Authored-By: Claude/Copilot`, or any AI trailer to the commit message, PR body, or changelog. See `references/no-ai-footer-rule.md`.
-- A separate hook (`hooks/validate-commit.sh`) will DENY any `git commit` call whose message contains these patterns. So even if you forget, the hook catches it.
+## Rules
 - Don't push without explicit confirmation.
 - Don't amend published commits.
 
 ## References
 - `templates/pr-description.md`
-- `references/no-ai-footer-rule.md`
 - `scripts/git-diff-staged.sh`
 - `hooks/validate-commit.sh` (the enforcing hook)

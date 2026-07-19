@@ -25,14 +25,12 @@ description: Drafts social-media content for multiple platforms from one idea wh
 5. **Append to the content calendar.** Run `bash scripts/init-calendar.sh` (creates the file if missing), then append a row to `templates/content-calendar.md` with date, idea summary, platforms drafted, tone.
 6. **Present all 6 drafts** in one fenced block per platform so the user can copy each individually.
 
-## Rules (HARD)
+## Rules
 - **No auto-posting.** This skill drafts only. No OAuth, no API calls to Facebook/Instagram/YouTube/Gmail. Do not attempt to post on the user's behalf. See README.
-- **No AI-generation footers** in any draft. No "Generated with CodeBuddy" / "Co-Authored-By". See `references/no-ai-footer-rule.md`.
 - Don't fabricate stats, quotes, or testimonials in promotional content.
 - Respect platform conventions (don't put 30 hashtags on IG; don't exceed tweet length).
 
 ## References
 - `references/platform-specs.md` — char limits, tone presets (authoritative).
-- `references/no-ai-footer-rule.md`
 - `templates/content-calendar.md`
 - `scripts/init-calendar.sh`

@@ -24,4 +24,4 @@ Activate the **pr-draft** skill.
 3. Show all three to the user.
 4. If the user approves the commit message, offer to run `git commit -m "<message>"` — only after explicit confirmation. Do NOT push.
 
-**Hard rule:** No AI-generation footers. The `hooks/validate-commit.sh` hook will DENY any commit containing `Generated with`, `Co-Authored-By:`, or similar AI trailers — so don't add them.
+**Rules:** Don't add AI trailers (`Generated with`, `Co-Authored-By:`) to the commit message — the `hooks/validate-commit.sh` hook will deny them. Don't push without confirmation.

@@ -31,4 +31,3 @@ uvicorn main:app --reload --port 8000
 
 - `audit-portfolio` uses the unauthenticated GitHub API (60 req/hr per IP). For heavy use, set `GITHUB_TOKEN` env var and the client will use it.
 - All generation is template-based. To plug in a real LLM, replace the functions in `skills.py` with calls to an OpenAI-compatible endpoint.
-- **No AI-generation footers** in any output (per the plugin's hard rule). The `/api/pr-draft` endpoint explicitly emits `No AI-generation footer.` in the commit message body.

@@ -9,5 +9,4 @@
 <!--
 Append a new row each time /raihan-toolkit:social is run.
 Keep the table chronological (newest at the bottom).
-NO AI-GENERATION FOOTER in this file.
 -->

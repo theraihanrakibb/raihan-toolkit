@@ -18,4 +18,4 @@ Activate the **job-application** skill for the JD provided.
 4. Append a row to `templates/job-applications-log.md` (create if missing): date | company | role | JD source | status=`drafted`.
 5. Present everything in one structured response.
 
-**Hard rule:** No AI-generation footers anywhere — cover letter, resume bullets, and log must all be footer-free. Do not invent experience. Do not auto-submit anywhere.
+**Rules:** Do not invent experience. Do not auto-submit anywhere.

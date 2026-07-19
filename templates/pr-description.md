@@ -1,6 +1,6 @@
 # PR Description Template
 
-> Filled in by the `pr-draft` skill. **No AI footer anywhere.**
+> Filled in by the `pr-draft` skill.
 
 ---
 
@@ -39,4 +39,3 @@
 - [ ] Changes are bulleted, each one says WHY not just WHAT.
 - [ ] Linked issue referenced (`Closes #NNN`).
 - [ ] Testing section lists at least one specific command + one manual check.
-- [ ] No AI footer. No "Generated with" line. No Co-Authored-By.

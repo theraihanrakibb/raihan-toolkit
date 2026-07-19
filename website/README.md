@@ -57,7 +57,6 @@ App at http://localhost:5173. The Vite dev server proxies `/api/*` to the FastAP
 
 - `audit-portfolio` hits the GitHub API (unauthenticated = 60 req/hr per IP). Set `GITHUB_TOKEN` for higher limits.
 - All generation is template-based. To plug in a real LLM, replace functions in `backend/skills.py` with calls to an OpenAI-compatible endpoint.
-- **No AI-generation footers** in any output (per the plugin's hard rule). The PR-draft endpoint emits `No AI-generation footer.` explicitly.
 
 ## Deployment (optional, later)
 

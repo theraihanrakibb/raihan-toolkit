@@ -23,7 +23,7 @@ export default function PrDraft() {
     <div className="panel">
       <h2>Generate a commit / PR description</h2>
       <p style={{ color: "var(--muted)", marginTop: 0 }}>
-        Paste <code>git diff --cached</code> output. Get a Conventional Commit message, PR description, and changelog entry. <strong>No AI footer.</strong>
+        Paste <code>git diff --cached</code> output. Get a Conventional Commit message, PR description, and changelog entry.
       </p>
 
       <label>git diff</label>

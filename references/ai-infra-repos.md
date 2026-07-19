@@ -71,6 +71,6 @@ pytest tests/<area>/test_x.py -k <name> -x
 ## General fork-PR checklist
 1. `pre-commit run --all-files` (or `.format.sh` for vLLM) is green.
 2. Targeted `pytest -k <name> -x` passes locally.
-3. Commit message is Conventional Commit format, **no AI footer**.
+3. Commit message is Conventional Commit format.
 4. PR description from `templates/pr-description.md`.
 5. Push to your fork, not upstream.

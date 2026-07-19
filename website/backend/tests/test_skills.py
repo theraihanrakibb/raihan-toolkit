@@ -67,7 +67,6 @@ def test_pr_draft_defaults_to_feat():
     assert out["commit_message"].startswith("feat(")
     assert out["additions"] >= 1
     assert out["deletions"] >= 0
-    assert "No AI-generation footer" in out["commit_message"]
 
 
 def test_pr_draft_empty_diff():

@@ -24,7 +24,7 @@ export default function Apply() {
     <div className="panel">
       <h2>Tailor a job application</h2>
       <p style={{ color: "var(--muted)", marginTop: 0 }}>
-        Paste a job description and your resume. Get a cover letter, interview questions, skills-gap analysis, and a 7-day prep plan. <strong>No AI footer.</strong>
+        Paste a job description and your resume. Get a cover letter, interview questions, skills-gap analysis, and a 7-day prep plan.
       </p>
 
       <label>Job description</label>

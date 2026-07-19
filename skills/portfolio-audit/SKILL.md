@@ -32,12 +32,10 @@ description: Audits the user's public GitHub repositories against a 10/10 qualit
 6. **Save a snapshot** to `references/portfolio-snapshot.md` with date, scores, and fix-plan so progress is trackable over time.
 
 ## Rules
-- **No AI-generation footers** on any generated file (README scaffolds, fix-plans, etc.). See `references/no-ai-footer-rule.md`.
 - Do not push or commit anything without explicit user confirmation.
 - When auditing remote GitHub repos, prefer `gh` CLI. If unavailable, ask the user to clone locally first.
 
 ## References
 - `references/quality-bar.md` — the 10/10 criteria (authoritative).
-- `references/no-ai-footer-rule.md` — the no-footers rule.
 - `templates/readme-scaffold.md` — README template for auto-fixes.
 - `scripts/audit-repo.sh` — repo signal gatherer.

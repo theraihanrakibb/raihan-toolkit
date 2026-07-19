@@ -18,12 +18,10 @@ description: Helps the user contribute to AI-inference open-source repos (SGLang
 4. **For "draft a PR"**, follow the `pr-draft` skill workflow — Conventional Commit message + PR description from `templates/pr-description.md`, with the no-AI-footer rule.
 
 ## Rules
-- **No AI-generation footers** on commits/PRs. See `references/no-ai-footer-rule.md`.
 - Don't push to upstream — only to the user's fork.
 - Don't run the full SGLang test suite locally just to "make CI green" — it's slow and most failures are fork-only.
 
 ## References
 - `references/ai-infra-repos.md` — SGLang/vLLM layout + CI behavior (authoritative).
-- `references/no-ai-footer-rule.md`
 - `templates/pr-description.md`
 - The `pr-draft` skill (for PR drafting workflow).

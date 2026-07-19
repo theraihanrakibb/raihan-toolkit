@@ -19,4 +19,4 @@ Activate the **ai-infra-helper** skill.
 4. If the user wants a PR drafted → switch to the `pr-draft` workflow.
 5. If they want to push → remind them to push to their fork, not upstream. Confirm before any push.
 
-**Hard rule:** No AI-generation footers on commits/PRs. Don't run the full test suite just to make fork-only CI green.
+**Rules:** Don't run the full test suite just to make fork-only CI green.

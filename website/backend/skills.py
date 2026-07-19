@@ -209,7 +209,7 @@ def pr_draft(diff: str) -> dict[str, Any]:
     scope = files[0].split("/")[0] if files else "core"
     subject = f"update {scope}" if files else "update project"
 
-    commit_message = f"{ctype}({scope}): {subject}\n\nUpdates {len(files)} file(s). +{additions} -{deletions}.\n\nNo AI-generation footer."
+    commit_message = f"{ctype}({scope}): {subject}\n\nUpdates {len(files)} file(s). +{additions} -{deletions}."
 
     pr_description = f"""## Summary
 Updates {len(files)} file(s) across `{scope}`.

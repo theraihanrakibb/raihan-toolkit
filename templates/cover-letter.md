@@ -1,6 +1,6 @@
 # Cover Letter Template
 
-> Filled in by the `job-application` skill. **No AI footer anywhere.**
+> Filled in by the `job-application` skill.
 
 ---
 
@@ -34,5 +34,4 @@ Best regards,
 - [ ] Two projects cited, each mapped to a specific JD requirement.
 - [ ] No invented metrics. If you don't have a number, describe the qualitative impact.
 - [ ] One researched line about the company (not generic).
-- [ ] No AI footer. No "Generated with" line. No Co-Authored-By.
 - [ ] ≤ 350 words total.
