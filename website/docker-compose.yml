@@ -1,0 +1,24 @@
+# raihan-toolkit website — full stack in two containers.
+# Usage: docker compose up --build
+# App:  http://localhost:8080  (frontend)
+# API:  http://localhost:8000  (backend, optional direct access)
+
+services:
+  backend:
+    build: ./backend
+    container_name: raihan-toolkit-backend
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    # Set GITHUB_TOKEN here (optional) to raise GitHub API rate limits for audit-portfolio.
+    environment:
+      - GITHUB_TOKEN=${GITHUB_TOKEN:-}
+
+  frontend:
+    build: ./frontend
+    container_name: raihan-toolkit-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    restart: unless-stopped

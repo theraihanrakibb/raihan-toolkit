@@ -94,8 +94,8 @@ def apply(jd: str, resume: str) -> dict[str, Any]:
     jd_keywords = _extract_keywords(jd)
     resume_keywords = _extract_keywords(resume)
 
-    matched = [k for k in jd_keywords if k.lower() in resume_keywords.lower()]
-    missing = [k for k in jd_keywords if k.lower() not in resume_keywords.lower()][:8]
+    matched = [k for k in jd_keywords if k.lower() in {r.lower() for r in resume_keywords}]
+    missing = [k for k in jd_keywords if k.lower() not in {r.lower() for r in resume_keywords}][:8]
 
     company = _extract_company(jd) or "your company"
     role = _extract_role(jd) or "the role"
@@ -167,7 +167,8 @@ def _extract_keywords(text: str) -> list[str]:
 
 
 def _extract_company(jd: str) -> str | None:
-    m = re.search(r"\b(?:at|join)\s+([A-Z][A-Za-z0-9& ]{2,40})", jd)
+    # Match "at <Capitalized Words>" or "join <Capitalized Words>" — each word must start uppercase.
+    m = re.search(r"\b(?:at|join)\s+([A-Z][A-Za-z0-9&]+(?:\s+[A-Z][A-Za-z0-9&]+)*)", jd)
     return m.group(1).strip() if m else None
 
 

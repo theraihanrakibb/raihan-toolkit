@@ -63,3 +63,34 @@ App at http://localhost:5173. The Vite dev server proxies `/api/*` to the FastAP
 
 - Backend: any Python host (Fly.io, Railway, Render). Set `GITHUB_TOKEN` env var.
 - Frontend: build with `npm run build`, deploy `dist/` to Vercel / Netlify / GitHub Pages. Point the frontend at the backend URL by editing `src/api.js` (`BASE` constant).
+
+## Docker (full stack in one command)
+
+```bash
+cd website
+docker compose up --build
+```
+
+- Frontend: http://localhost:8080 (nginx serves the built React app, proxies `/api` to the backend)
+- Backend: http://localhost:8000 (FastAPI on `python:3.11-slim`, non-root user)
+- Set `GITHUB_TOKEN` env var (optional) to raise GitHub API rate limits for audit-portfolio.
+
+## CI
+
+`.github/workflows/ci.yml` (at the repo root) runs 3 jobs on every push/PR to `main`:
+
+| Job | What it does |
+|---|---|
+| Backend | `python 3.11` → install deps → `ruff check .` → `pytest` |
+| Frontend | `node 20` → `npm install` → `npm run build` |
+| Plugin | `shellcheck` + `bash -n` on `scripts/*.sh` and `hooks/*.sh` + JSON validation |
+
+## Tests
+
+```bash
+cd website/backend
+pip install -r requirements.txt -r dev-requirements.txt
+pytest
+```
+
+17 tests cover all 5 skill functions: `apply`, `pr_draft`, `social`, `ai_infra_helper`, `audit_portfolio` (incl. a mocked API-error path). See `tests/test_skills.py`.
