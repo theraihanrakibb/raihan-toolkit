@@ -5,6 +5,8 @@ Docs: http://localhost:8000/docs
 """
 from __future__ import annotations
 
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -17,10 +19,13 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# Allow the Vite dev server (and any local origin) to call the API.
+# Allow origins from env var (comma-separated). Defaults to local dev origins.
+# In production set ALLOWED_ORIGINS=https://your-app.vercel.app (or * for a public demo).
+_DEFAULT_ORIGINS = "http://localhost:5173,http://127.0.0.1:5173,http://localhost:8000"
+_allowed = [o.strip() for o in os.getenv("ALLOWED_ORIGINS", _DEFAULT_ORIGINS).split(",") if o.strip()]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:8000"],
+    allow_origins=_allowed,
     allow_methods=["*"],
     allow_headers=["*"],
 )

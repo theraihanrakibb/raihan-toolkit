@@ -98,3 +98,17 @@ App at http://localhost:8080, API at http://localhost:8000. Backend runs as a no
 - **Backend tests:** `website/backend/tests/test_skills.py` — 17 tests covering all 5 skills. Run with `pytest`.
 - **Lint:** `ruff check .` (config in `website/backend/pyproject.toml`).
 - **Type hints + docstrings** throughout `skills.py` and `main.py`.
+
+## Deploy
+
+Frontend → Vercel · Backend → Fly.io. Full step-by-step in [`website/DEPLOY.md`](./website/DEPLOY.md).
+
+```bash
+# Backend → Fly.io
+cd website/backend && fly launch && fly secrets set ALLOWED_ORIGINS=<vercel-url> && fly deploy
+
+# Frontend → Vercel
+cd website/frontend && vercel env add FLY_BACKEND_URL production && vercel --prod
+```
+
+Vercel proxies `/api/*` to the Fly backend (`website/frontend/vercel.json`), so the frontend code stays unchanged. CORS on the backend is configured via the `ALLOWED_ORIGINS` env var.

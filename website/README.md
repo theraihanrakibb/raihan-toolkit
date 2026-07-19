@@ -94,3 +94,19 @@ pytest
 ```
 
 17 tests cover all 5 skill functions: `apply`, `pr_draft`, `social`, `ai_infra_helper`, `audit_portfolio` (incl. a mocked API-error path). See `tests/test_skills.py`.
+
+## Deploy
+
+Frontend → Vercel, Backend → Fly.io. Full step-by-step in [`DEPLOY.md`](./DEPLOY.md). TL;DR:
+
+```bash
+# Backend → Fly.io (uses fly.toml)
+cd backend && fly launch && fly secrets set ALLOWED_ORIGINS=<vercel-url> GITHUB_TOKEN=<optional-pat> && fly deploy
+
+# Frontend → Vercel (uses vercel.json, proxies /api to Fly backend)
+cd frontend && vercel env add FLY_BACKEND_URL production && vercel --prod
+```
+
+Env vars:
+- Backend: `ALLOWED_ORIGINS` (comma-separated origins, or `*` for a public demo), `GITHUB_TOKEN` (optional, raises GitHub API rate limit for `audit-portfolio`).
+- Frontend: `FLY_BACKEND_URL` (e.g. `https://raihan-toolkit-backend.fly.dev`) — used by `vercel.json` rewrites.

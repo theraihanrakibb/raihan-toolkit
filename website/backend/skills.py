@@ -5,6 +5,7 @@ Each function mirrors the corresponding CodeBuddy skill's behavior.
 """
 from __future__ import annotations
 
+import os
 import re
 from typing import Any
 
@@ -12,13 +13,19 @@ import httpx
 
 GITHUB_API = "https://api.github.com"
 
+# Optional: set GITHUB_TOKEN to raise GitHub API rate limits (60 → 5000 req/hr).
+_GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+_GITHUB_HEADERS = {"Accept": "application/vnd.github+json"}
+if _GITHUB_TOKEN:
+    _GITHUB_HEADERS["Authorization"] = f"Bearer {_GITHUB_TOKEN}"
+
 
 # ---------------------------------------------------------------------------
 # 1. Portfolio audit
 # ---------------------------------------------------------------------------
 async def audit_portfolio(username: str, max_repos: int = 5) -> dict[str, Any]:
     """Score a GitHub user's top repos against a 10-point quality bar."""
-    async with httpx.AsyncClient(timeout=20, headers={"Accept": "application/vnd.github+json"}) as client:
+    async with httpx.AsyncClient(timeout=20, headers=_GITHUB_HEADERS) as client:
         r = await client.get(f"{GITHUB_API}/users/{username}/repos", params={"per_page": 100, "sort": "pushed"})
         if r.status_code != 200:
             return {"error": f"GitHub API {r.status_code}: {r.text[:200]}"}
@@ -28,7 +35,7 @@ async def audit_portfolio(username: str, max_repos: int = 5) -> dict[str, Any]:
     repos = sorted(repos, key=lambda x: x.get("stargazers_count", 0), reverse=True)[:max_repos]
 
     scored = []
-    async with httpx.AsyncClient(timeout=20, headers={"Accept": "application/vnd.github+json"}) as client:
+    async with httpx.AsyncClient(timeout=20, headers=_GITHUB_HEADERS) as client:
         for repo in repos:
             full_name = repo["full_name"]
             readme_ok = (await client.get(f"{GITHUB_API}/repos/{full_name}/readme")).status_code == 200
