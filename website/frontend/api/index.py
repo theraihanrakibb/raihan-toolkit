@@ -1,7 +1,8 @@
 """Vercel Python serverless entrypoint for Toolkit Skills.
 
-Routes POST /api (with {"action": ...} in the body) to the skill logic in
-skills.py. No external dependencies - pure standard library.
+Exposes an ASGI `app` (required by the current Vercel Python runtime) that routes
+POST /api (with {"action": ...} in the body) to the skill logic in skills.py.
+Pure standard library - no pip dependencies.
 """
 
 import json
@@ -9,25 +10,33 @@ import json
 from skills import dispatch
 
 
-def handler(request):
-    # Vercel's Python Request exposes .json() (returns a dict) or .body (bytes).
+async def app(scope, receive, send):
+    assert scope["type"] == "http"
+
+    # Read the full request body.
+    body = b""
+    while True:
+        message = await receive()
+        body += message.get("body", b"")
+        if not message.get("more_body", False):
+            break
+
     try:
-        if hasattr(request, "json"):
-            try:
-                body = request.json()
-            except Exception:  # noqa: BLE001
-                body = {}
-        else:
-            body = json.loads((request.body or b"{}").decode("utf-8"))
+        data = json.loads(body.decode("utf-8")) if body else {}
     except Exception:  # noqa: BLE001
-        body = {}
+        data = {}
+    if not isinstance(data, dict):
+        data = {}
 
-    if not isinstance(body, dict):
-        body = {}
-
-    action = body.get("action")
     try:
-        result = dispatch(action, body)
-        return 200, {"Content-Type": "application/json"}, json.dumps(result)
+        result = dispatch(data.get("action"), data)
+        status, payload = 200, json.dumps(result).encode("utf-8")
     except Exception as e:  # noqa: BLE001
-        return 500, {"Content-Type": "application/json"}, json.dumps({"error": str(e)})
+        status, payload = 500, json.dumps({"error": str(e)}).encode("utf-8")
+
+    await send({
+        "type": "http.response.start",
+        "status": status,
+        "headers": [(b"content-type", b"application/json")],
+    })
+    await send({"type": "http.response.body", "body": payload})
