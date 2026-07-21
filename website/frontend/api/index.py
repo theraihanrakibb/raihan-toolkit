@@ -6,6 +6,12 @@ Pure standard library - no pip dependencies.
 """
 
 import json
+import os
+import sys
+
+# Ensure the function directory is importable (Vercel's uv builder does not
+# always add it to sys.path at runtime).
+sys.path.insert(0, os.path.dirname(__file__))
 
 from skills import dispatch
 
